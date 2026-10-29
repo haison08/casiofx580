@@ -1,0 +1,1016 @@
+/* =========================================================
+   CASIO fx-580VN X ClassWiz - Hyper-Realistic Theme
+   ========================================================= */
+
+:root {
+  --bg-gradient: radial-gradient(circle at 50% 20%, #1e2530 0%, #0d1117 100%);
+  --case-base: #1c2024;
+  --case-highlight: #2f363d;
+  --case-border: #14171a;
+  
+  --lcd-bg: #98ad9b;
+  --lcd-bg-darker: #8ba08e;
+  --lcd-pixel: #111e14;
+  --lcd-pixel-dim: rgba(17, 30, 20, 0.15);
+  
+  --btn-num-bg: #f4f5f7;
+  --btn-num-border: #c8cbd0;
+  --btn-num-shadow: #9ea3ac;
+  --btn-num-text: #1a1e22;
+
+  --btn-func-bg: #2d333b;
+  --btn-func-border: #444c56;
+  --btn-func-shadow: #1b1f24;
+  --btn-func-text: #f0f6fc;
+
+  --btn-del-bg: #223748;
+  --btn-del-text: #58a6ff;
+  --btn-ac-bg: #442a27;
+  --btn-ac-text: #ff7b72;
+  --btn-equal-bg: #263342;
+
+  --color-shift: #e5a93c;
+  --color-alpha: #f85149;
+  --color-brand-gold: #eac54f;
+  --color-blue-accent: #388bfd;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #c9d1d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 10px;
+  overflow-x: hidden;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 500px;
+  width: 100%;
+}
+
+/* --- Top Navigation & Quick Controls --- */
+.top-nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 4px 8px;
+}
+
+.logo-tag {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.logo-tag .brand {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+  color: #fff;
+}
+
+.logo-tag .sub {
+  font-size: 0.85rem;
+  color: #8b949e;
+}
+
+.logo-tag .sub em {
+  color: var(--color-brand-gold);
+  font-style: italic;
+  font-weight: 700;
+}
+
+.quick-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-pill {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #e6edf3;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(8px);
+}
+
+.btn-pill:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.28);
+  transform: translateY(-1px);
+}
+
+.btn-pill.btn-highlight {
+  background: rgba(56, 139, 253, 0.2);
+  border-color: rgba(56, 139, 253, 0.4);
+  color: #79c0ff;
+}
+
+/* =========================================================
+   CALCULATOR HARDWARE CASING
+   ========================================================= */
+
+.calculator-wrapper {
+  perspective: 1000px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.calculator-body {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.08) 0%, transparent 60%),
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.02) 0, rgba(255, 255, 255, 0.02) 2px, transparent 0, transparent 5px),
+    linear-gradient(180deg, #2b313a 0%, #1f2328 35%, #181b1f 100%);
+  border: 2px solid #333a42;
+  border-top-color: #49515c;
+  border-bottom-color: #101214;
+  border-radius: 28px 28px 36px 36px;
+  padding: 22px 20px 26px 20px;
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.8),
+    0 10px 20px rgba(0, 0, 0, 0.6),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.6);
+  box-sizing: border-box;
+}
+
+/* Subtle side grips of Casio body */
+.calculator-body::before, .calculator-body::after {
+  content: '';
+  position: absolute;
+  top: 15%;
+  bottom: 25%;
+  width: 4px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 2px;
+}
+.calculator-body::before { left: 4px; }
+.calculator-body::after { right: 4px; }
+
+/* Casio Header Branding & Solar Cell */
+.casio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 0 4px;
+}
+
+.header-left .brand-text {
+  font-family: 'Orbitron', 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: 1.25rem;
+  letter-spacing: 2px;
+  color: #f0f6fc;
+  line-height: 1;
+}
+
+.header-left .model-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 3px;
+}
+
+.header-left .model-num {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #e6edf3;
+  letter-spacing: 0.5px;
+}
+
+.header-left .classwiz-tag {
+  background: linear-gradient(135deg, #dfa938, #b07d1a);
+  color: #1a1505;
+  font-size: 0.55rem;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.header-left .tech-text {
+  font-size: 0.55rem;
+  color: #8b949e;
+  letter-spacing: 0.8px;
+  margin-top: 1px;
+}
+
+/* Faux Solar Strip */
+.solar-strip {
+  width: 95px;
+  height: 26px;
+  background: linear-gradient(180deg, #1b1716 0%, #2f2520 50%, #1a1615 100%);
+  border: 1.5px solid #443c38;
+  border-radius: 4px;
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.solar-grid {
+  flex: 1;
+  background: rgba(220, 160, 100, 0.08);
+  border: 0.5px solid rgba(255, 255, 255, 0.08);
+}
+
+/* =========================================================
+   AUTHENTIC LCD SCREEN
+   ========================================================= */
+
+.screen-frame {
+  background: #171b1e;
+  border: 2px solid #0d0f12;
+  border-radius: 12px;
+  padding: 7px;
+  box-shadow:
+    inset 0 3px 6px rgba(0, 0, 0, 0.8),
+    0 1px 1px rgba(255, 255, 255, 0.1);
+  margin-bottom: 16px;
+}
+
+.lcd-screen {
+  position: relative;
+  background:
+    radial-gradient(ellipse at 50% 30%, var(--lcd-bg) 0%, var(--lcd-bg-darker) 100%);
+  border-radius: 6px;
+  height: 118px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--lcd-pixel);
+}
+
+/* Glass glare reflection */
+.lcd-screen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.0) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Dot matrix texture overlay */
+.lcd-screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 3px 3px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Status Bar (Icons: S, A, D/R, Math, ▲, ▼) */
+.lcd-status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  height: 14px;
+  border-bottom: 0.5px solid rgba(17, 30, 20, 0.2);
+  padding-bottom: 2px;
+  letter-spacing: 1px;
+  z-index: 3;
+}
+
+.indicators-left, .indicators-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ind-badge {
+  opacity: 0.15;
+  transition: opacity 0.1s ease;
+}
+
+.ind-badge.active {
+  opacity: 0.95;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+}
+
+.ind-mode {
+  font-size: 0.65rem;
+  font-weight: 800;
+  opacity: 0.85;
+}
+
+/* Screen Views */
+.lcd-content-view {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 4px;
+  z-index: 3;
+}
+
+.lcd-content-view.hidden {
+  display: none !important;
+}
+
+/* Expression / Formula line */
+.expression-line {
+  font-size: 1.15rem;
+  line-height: 1.25;
+  word-break: break-all;
+  white-space: pre-wrap;
+  min-height: 28px;
+  letter-spacing: 0.5px;
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.15rem;
+  background-color: var(--lcd-pixel);
+  vertical-align: text-bottom;
+  margin-left: 1px;
+  animation: blink 1s infinite steps(2, start);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Result Line (Bottom-right aligned) */
+.result-line {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  min-height: 38px;
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Natural fraction display in LCD */
+.fraction-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.1rem;
+  line-height: 1;
+  margin-right: 6px;
+}
+
+.fraction-box.hidden {
+  display: none;
+}
+
+.frac-num, .frac-den {
+  padding: 0 4px;
+}
+
+.frac-line {
+  width: 100%;
+  height: 1.5px;
+  background-color: var(--lcd-pixel);
+  margin: 1px 0;
+}
+
+/* MENU Screen on LCD */
+#view-menu {
+  justify-content: flex-start;
+  gap: 4px;
+}
+
+.menu-header {
+  font-size: 0.75rem;
+  font-weight: 800;
+  border-bottom: 1px dashed rgba(17, 30, 20, 0.4);
+  padding-bottom: 2px;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px 12px;
+  margin-top: 4px;
+}
+
+.menu-item {
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 1px 2px;
+  border-radius: 2px;
+}
+
+.menu-item:hover {
+  background: rgba(17, 30, 20, 0.15);
+}
+
+.menu-footer {
+  margin-top: auto;
+  font-size: 0.65rem;
+  text-align: right;
+  opacity: 0.8;
+}
+
+/* Equation View on LCD */
+.eqn-header {
+  font-size: 0.75rem;
+  font-weight: 800;
+  border-bottom: 1px dashed rgba(17, 30, 20, 0.4);
+  margin-bottom: 3px;
+}
+
+.eqn-body {
+  font-size: 0.95rem;
+  line-height: 1.25;
+  overflow-y: auto;
+  max-height: 68px;
+}
+
+.eqn-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 1px 0;
+}
+
+.eqn-prompt-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.eqn-val-active {
+  font-weight: bold;
+  border-bottom: 1.5px solid var(--lcd-pixel);
+}
+
+/* Table View on LCD */
+.table-header {
+  font-size: 0.75rem;
+  font-weight: 800;
+  border-bottom: 1px dashed rgba(17, 30, 20, 0.4);
+}
+
+.table-body {
+  font-size: 0.85rem;
+  overflow-y: auto;
+  max-height: 68px;
+  margin-top: 2px;
+}
+
+.table-matrix {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-matrix th, .table-matrix td {
+  padding: 1px 4px;
+  text-align: right;
+}
+
+.table-matrix th:first-child, .table-matrix td:first-child {
+  text-align: left;
+}
+
+/* =========================================================
+   KEYPAD & BUTTONS
+   ========================================================= */
+
+.keypad-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Generic Key Wrapper (For SHIFT/ALPHA labels above buttons) */
+.key-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.key-label-shift, .key-label-alpha {
+  position: absolute;
+  top: -10px;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.key-label-shift {
+  left: 2px;
+  color: var(--color-shift);
+}
+
+.key-label-alpha {
+  right: 2px;
+  color: var(--color-alpha);
+}
+
+/* Base 3D Button Style */
+.key {
+  position: relative;
+  width: 100%;
+  height: 33px;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid transparent;
+  transition: transform 0.05s ease, box-shadow 0.05s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.key:active {
+  transform: translateY(2px);
+}
+
+/* Function row extra (OPTN, CALC, ∫dx) */
+.function-row-extra {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  padding: 0 10px;
+  margin-bottom: 2px;
+}
+
+.key-function-sm {
+  background: linear-gradient(180deg, #373e47 0%, #262a30 100%);
+  border-color: #444c56;
+  color: #f0f6fc;
+  box-shadow: 0 3px 0 #16181b, 0 4px 6px rgba(0, 0, 0, 0.4);
+  font-size: 0.75rem;
+  height: 28px;
+}
+
+.key-function-sm:active {
+  box-shadow: 0 1px 0 #16181b;
+}
+
+/* Top control cluster (SHIFT, ALPHA, REPLAY D-PAD, MENU, ON) */
+.top-controls-cluster {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4px;
+}
+
+.top-left-buttons, .top-right-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 58px;
+}
+
+.key-shift {
+  background: linear-gradient(180deg, #373e47 0%, #262a30 100%);
+  border-color: #4b4530;
+  color: var(--color-shift);
+  box-shadow: 0 3px 0 #16181b, 0 4px 6px rgba(0, 0, 0, 0.4);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.key-alpha {
+  background: linear-gradient(180deg, #373e47 0%, #262a30 100%);
+  border-color: #4d2b2b;
+  color: var(--color-alpha);
+  box-shadow: 0 3px 0 #16181b, 0 4px 6px rgba(0, 0, 0, 0.4);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.key-menu {
+  background: linear-gradient(180deg, #373e47 0%, #262a30 100%);
+  border-color: #444c56;
+  color: #f0f6fc;
+  box-shadow: 0 3px 0 #16181b, 0 4px 6px rgba(0, 0, 0, 0.4);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.key-on {
+  background: linear-gradient(180deg, #3a414b 0%, #282d34 100%);
+  border-color: #586069;
+  color: #fff;
+  box-shadow: 0 3px 0 #16181b, 0 4px 6px rgba(0, 0, 0, 0.4);
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+.key-shift:active, .key-alpha:active, .key-menu:active, .key-on:active {
+  box-shadow: 0 1px 0 #16181b;
+}
+
+/* REPLAY D-PAD (Large Metallic Directional Pad) */
+.dpad-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dpad-label {
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #8b949e;
+  margin-bottom: 2px;
+}
+
+.dpad {
+  position: relative;
+  width: 90px;
+  height: 78px;
+  background: radial-gradient(circle, #3d454f 0%, #1e2227 100%);
+  border: 1.5px solid #545d68;
+  border-radius: 50%;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.6),
+    inset 0 2px 3px rgba(255, 255, 255, 0.2),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dpad-btn {
+  position: absolute;
+  background: none;
+  border: none;
+  color: #c9d1d9;
+  font-size: 0.7rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.05s ease, color 0.1s ease;
+}
+
+.dpad-btn:hover {
+  color: #fff;
+}
+
+.dpad-btn:active {
+  transform: scale(0.9);
+}
+
+.dpad-up { top: 4px; left: 50%; transform: translateX(-50%); }
+.dpad-down { bottom: 4px; left: 50%; transform: translateX(-50%); }
+.dpad-left { left: 6px; top: 50%; transform: translateY(-50%); }
+.dpad-right { right: 6px; top: 50%; transform: translateY(-50%); }
+.dpad-center {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #252b31;
+  border: 1px solid #444c56;
+  font-size: 0.55rem;
+  font-weight: 800;
+  color: #8b949e;
+}
+
+/* Function Keys Grid (6 columns) */
+.function-keys-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px 6px;
+  margin-top: 8px;
+  padding: 0 4px;
+}
+
+.key-func {
+  background: linear-gradient(180deg, #373e47 0%, #262a30 100%);
+  border-color: #444c56;
+  color: #e6edf3;
+  box-shadow: 0 3px 0 #16181b, 0 4px 6px rgba(0, 0, 0, 0.4);
+  font-size: 0.72rem;
+  height: 27px;
+  border-radius: 5px;
+}
+
+.key-func:active {
+  box-shadow: 0 1px 0 #16181b;
+}
+
+.key-func sup {
+  font-size: 0.6em;
+}
+
+/* Numeric & Core Keypad Grid (5 columns) */
+.numeric-pad-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 13px 8px;
+  margin-top: 10px;
+  padding: 0 4px;
+}
+
+/* White Numeric Keys */
+.key-num {
+  background: linear-gradient(180deg, #ffffff 0%, #e2e5e9 100%);
+  border-color: #d0d4dc;
+  color: #1a1e22;
+  box-shadow: 0 3.5px 0 #9ea3ac, 0 5px 8px rgba(0, 0, 0, 0.4);
+  font-size: 1.15rem;
+  font-weight: 800;
+  height: 38px;
+  border-radius: 7px;
+}
+
+.key-num:active {
+  box-shadow: 0 1px 0 #9ea3ac;
+}
+
+/* Dark Operation Keys (×, ÷, +, −) */
+.key-op {
+  background: linear-gradient(180deg, #3b424c 0%, #282d34 100%);
+  border-color: #4f5763;
+  color: #f0f6fc;
+  box-shadow: 0 3.5px 0 #181b20, 0 5px 8px rgba(0, 0, 0, 0.4);
+  font-size: 1.1rem;
+  font-weight: 700;
+  height: 38px;
+  border-radius: 7px;
+}
+
+.key-op:active {
+  box-shadow: 0 1px 0 #181b20;
+}
+
+/* DEL & AC Special Keys */
+.key-del {
+  background: linear-gradient(180deg, #26435c 0%, #172c3d 100%);
+  border-color: #388bfd;
+  color: #79c0ff;
+  box-shadow: 0 3.5px 0 #0d1d2b, 0 5px 8px rgba(0, 0, 0, 0.4);
+  font-size: 0.85rem;
+  font-weight: 800;
+  height: 38px;
+  border-radius: 7px;
+}
+
+.key-del:active {
+  box-shadow: 0 1px 0 #0d1d2b;
+}
+
+.key-ac {
+  background: linear-gradient(180deg, #592e2b 0%, #3e1e1b 100%);
+  border-color: #f85149;
+  color: #ff7b72;
+  box-shadow: 0 3.5px 0 #2a1210, 0 5px 8px rgba(0, 0, 0, 0.4);
+  font-size: 0.85rem;
+  font-weight: 800;
+  height: 38px;
+  border-radius: 7px;
+}
+
+.key-ac:active {
+  box-shadow: 0 1px 0 #2a1210;
+}
+
+/* Equal Key */
+.key-equal {
+  background: linear-gradient(180deg, #374659 0%, #202b37 100%);
+  border-color: #4a5d75;
+  color: #f0f6fc;
+  box-shadow: 0 3.5px 0 #131a22, 0 5px 8px rgba(0, 0, 0, 0.4);
+  font-size: 1.25rem;
+  font-weight: 800;
+  height: 38px;
+  border-radius: 7px;
+}
+
+.key-equal:active {
+  box-shadow: 0 1px 0 #131a22;
+}
+
+/* =========================================================
+   MODAL DIALOG (Help / Shortcuts)
+   ========================================================= */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  padding: 16px;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.modal-backdrop.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal-card {
+  background: #1e2228;
+  border: 1px solid #30363d;
+  border-radius: 14px;
+  max-width: 520px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #30363d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h3 {
+  font-size: 1.05rem;
+  color: #f0f6fc;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #8b949e;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: #fff;
+}
+
+.modal-body {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #c9d1d9;
+}
+
+.modal-body h4 {
+  font-size: 0.95rem;
+  color: #58a6ff;
+  margin-bottom: 8px;
+}
+
+.help-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.help-table th, .help-table td {
+  border: 1px solid #30363d;
+  padding: 6px 10px;
+  text-align: left;
+}
+
+.help-table th {
+  background: #161b22;
+  color: #8b949e;
+}
+
+.help-table code {
+  background: #282f37;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #e6edf3;
+  font-family: monospace;
+}
+
+.modal-body ul {
+  padding-left: 20px;
+}
+
+.modal-body li {
+  margin-bottom: 6px;
+}
+
+.modal-footer {
+  padding: 12px 20px;
+  border-top: 1px solid #30363d;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-primary {
+  background: #238636;
+  border: 1px solid rgba(240, 246, 252, 0.1);
+  color: #ffffff;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: #2ea043;
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN (Mobile, Tablet)
+   ========================================================= */
+
+@media (max-width: 480px) {
+  body {
+    padding: 8px 4px;
+  }
+  
+  .calculator-body {
+    padding: 16px 12px 20px 12px;
+    border-radius: 20px;
+  }
+
+  .lcd-screen {
+    height: 106px;
+    padding: 6px 8px;
+  }
+
+  .expression-line {
+    font-size: 1rem;
+  }
+
+  .result-line {
+    font-size: 1.35rem;
+  }
+
+  .key-num, .key-op, .key-del, .key-ac, .key-equal {
+    height: 35px;
+    font-size: 1.05rem;
+  }
+
+  .key-func {
+    height: 25px;
+    font-size: 0.68rem;
+  }
+
+  .dpad {
+    width: 78px;
+    height: 68px;
+  }
+
+  .top-nav {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+

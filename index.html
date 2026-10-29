@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Máy Tính Casio fx-580VN X ClassWiz</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@400;600;700;800&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Background environment & controls -->
+  <div class="app-container">
+    
+    <!-- Top quick control bar -->
+    <header class="top-nav">
+      <div class="logo-tag">
+        <span class="brand">CASIO</span>
+        <span class="sub">fx-580VN X <em>ClassWiz</em></span>
+      </div>
+
+      <div class="quick-actions">
+        <button id="btn-toggle-sound" class="btn-pill" title="Bật/Tắt âm thanh phím">
+          <span class="icon">🔊</span> <span class="lbl">Âm thanh: BẬT</span>
+        </button>
+        <button id="btn-toggle-angle" class="btn-pill" title="Chuyển chế độ góc (DEG / RAD)">
+          <span class="icon">📐</span> <span class="lbl" id="angle-mode-lbl">DEG</span>
+        </button>
+        <button id="btn-open-help" class="btn-pill btn-highlight" title="Xem hướng dẫn sử dụng & phím tắt">
+          <span class="icon">💡</span> <span class="lbl">Hướng Dẫn Phím Tắt</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- MAIN CALCULATOR UNIT -->
+    <main class="calculator-wrapper">
+      <div class="calculator-body" id="calculator">
+
+        <!-- Top Header & Solar Panel Strip -->
+        <div class="casio-header">
+          <div class="header-left">
+            <div class="brand-text">CASIO</div>
+            <div class="model-line">
+              <span class="model-num">fx-580VN X</span>
+              <span class="classwiz-tag">CLASSWIZ</span>
+            </div>
+            <div class="tech-text">Natural-V.P.A.M.</div>
+          </div>
+          <div class="solar-strip" title="Faux Solar Cell">
+            <div class="solar-grid"></div>
+            <div class="solar-grid"></div>
+            <div class="solar-grid"></div>
+            <div class="solar-grid"></div>
+          </div>
+        </div>
+
+        <!-- LCD Screen Unit -->
+        <div class="screen-frame">
+          <div class="lcd-screen" id="lcd-screen">
+
+            <!-- LCD Status Bar -->
+            <div class="lcd-status-bar">
+              <div class="indicators-left">
+                <span class="ind-badge" id="ind-shift">S</span>
+                <span class="ind-badge" id="ind-alpha">A</span>
+                <span class="ind-badge" id="ind-angle">D</span>
+                <span class="ind-badge active" id="ind-math">Math</span>
+              </div>
+              <div class="indicators-right">
+                <span class="ind-badge" id="ind-up">▲</span>
+                <span class="ind-badge" id="ind-down">▼</span>
+                <span class="ind-mode" id="ind-mode-name"></span>
+              </div>
+            </div>
+
+            <!-- View 1: Standard Calculation Display -->
+            <div class="lcd-content-view" id="view-calculate">
+              <!-- Expression / Input line -->
+              <div class="expression-line" id="expression-display">
+                <span id="expr-text"></span><span class="cursor" id="cursor"></span>
+              </div>
+              
+              <!-- Result line -->
+              <div class="result-line" id="result-display">
+                <div class="fraction-box hidden" id="result-fraction">
+                  <div class="frac-num" id="frac-num"></div>
+                  <div class="frac-line"></div>
+                  <div class="frac-den" id="frac-den"></div>
+                </div>
+                <div class="decimal-box" id="result-text">0</div>
+              </div>
+            </div>
+
+            <!-- View 2: MENU Screen (Mode 1 to 9) -->
+            <div class="lcd-content-view hidden" id="view-menu">
+              <div class="menu-header">MENU BẢNG CHỌN</div>
+              <div class="menu-grid">
+                <div class="menu-item" data-mode="1">
+                  <span class="menu-idx">1</span>
+                  <span class="menu-name">1: Tính toán</span>
+                </div>
+                <div class="menu-item" data-mode="2">
+                  <span class="menu-idx">2</span>
+                  <span class="menu-name">2: Số phức</span>
+                </div>
+                <div class="menu-item" data-mode="8">
+                  <span class="menu-idx">8</span>
+                  <span class="menu-name">8: Bảng giá trị</span>
+                </div>
+                <div class="menu-item" data-mode="9">
+                  <span class="menu-idx">9</span>
+                  <span class="menu-name">9: PT / Hệ PT</span>
+                </div>
+              </div>
+              <div class="menu-footer">Bấm [1], [2], [8], [9] để chọn</div>
+            </div>
+
+            <!-- View 3: Equation Solver Screen (Mode 9) -->
+            <div class="lcd-content-view hidden" id="view-equation">
+              <div class="eqn-header" id="eqn-step-title">Phương trình / Hệ PT</div>
+              <div class="eqn-body" id="eqn-body">
+                <!-- Dynamically generated equation forms & roots -->
+              </div>
+            </div>
+
+            <!-- View 4: Table Screen (Mode 8) -->
+            <div class="lcd-content-view hidden" id="view-table">
+              <div class="table-header" id="table-step-title">f(x) = ?</div>
+              <div class="table-body" id="table-body">
+                <!-- Dynamically generated table inputs & table rows -->
+              </div>
+            </div>
+
+            <!-- View 5: CALC Variable Prompt (e.g. X = ?) -->
+            <div class="lcd-content-view hidden" id="view-calc-prompt">
+              <div class="prompt-header" id="calc-prompt-header">X = ?</div>
+              <div class="prompt-input" id="calc-prompt-input">
+                <span id="prompt-val">0</span><span class="cursor"></span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- KEYPAD SECTION -->
+        <div class="keypad-container">
+
+          <!-- Upper Row: SHIFT, OPTN, D-PAD, CALC, ON -->
+          <div class="top-controls-cluster">
+            
+            <div class="top-left-buttons">
+              <!-- SHIFT -->
+              <div class="key-wrapper">
+                <span class="key-label-shift"></span>
+                <button class="key key-shift" data-action="shift">SHIFT</button>
+              </div>
+              <!-- ALPHA -->
+              <div class="key-wrapper">
+                <span class="key-label-alpha"></span>
+                <button class="key key-alpha" data-action="alpha">ALPHA</button>
+              </div>
+            </div>
+
+            <!-- Central D-PAD (Replay) -->
+            <div class="dpad-wrapper">
+              <div class="dpad-label">REPLAY</div>
+              <div class="dpad">
+                <button class="dpad-btn dpad-up" data-nav="up" title="Lên">▲</button>
+                <button class="dpad-btn dpad-left" data-nav="left" title="Trái">◀</button>
+                <button class="dpad-btn dpad-center" data-nav="ok">OK</button>
+                <button class="dpad-btn dpad-right" data-nav="right" title="Phải">▶</button>
+                <button class="dpad-btn dpad-down" data-nav="down" title="Xuống">▼</button>
+              </div>
+            </div>
+
+            <div class="top-right-buttons">
+              <!-- MENU / SETUP -->
+              <div class="key-wrapper">
+                <span class="key-label-shift">SETUP</span>
+                <button class="key key-menu" data-action="menu">MENU</button>
+              </div>
+              <!-- ON / OFF -->
+              <div class="key-wrapper">
+                <span class="key-label-shift">OFF</span>
+                <button class="key key-on" data-action="on">ON</button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Secondary Control Row: OPTN, CALC -->
+          <div class="function-row-extra">
+            <div class="key-wrapper">
+              <button class="key key-function-sm" data-action="optn">OPTN</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">SOLVE</span>
+              <span class="key-label-alpha">=</span>
+              <button class="key key-function-sm" data-action="calc">CALC</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">d/dx</span>
+              <span class="key-label-alpha">:</span>
+              <button class="key key-function-sm" data-input="∫">∫dx</button>
+            </div>
+          </div>
+
+          <!-- Main Function Grid (Fractions, Roots, Logs, Trig, etc.) -->
+          <div class="function-keys-grid">
+
+            <!-- Row 1 -->
+            <div class="key-wrapper">
+              <span class="key-label-shift"></span>
+              <button class="key key-func" data-input="/" title="Phân số">■/□</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">∛</span>
+              <button class="key key-func" data-input="√(">√</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">x³</span>
+              <button class="key key-func" data-input="^2">x²</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">ⁿ√</span>
+              <button class="key key-func" data-input="^">x<sup>■</sup></button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">log</span>
+              <button class="key key-func" data-input="log(">log</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">e<sup>x</sup></span>
+              <button class="key key-func" data-input="ln(">ln</button>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="key-wrapper">
+              <span class="key-label-shift">Fact</span>
+              <span class="key-label-alpha">A</span>
+              <button class="key key-func" data-input="(-)" data-alpha="A">(-)</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">° ' "</span>
+              <span class="key-label-alpha">B</span>
+              <button class="key key-func" data-input="°" data-alpha="B">° ' "</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">sin⁻¹</span>
+              <span class="key-label-alpha">C</span>
+              <button class="key key-func" data-input="sin(" data-shift="sin⁻¹(" data-alpha="C">sin</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">cos⁻¹</span>
+              <span class="key-label-alpha">D</span>
+              <button class="key key-func" data-input="cos(" data-shift="cos⁻¹(" data-alpha="D">cos</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">tan⁻¹</span>
+              <span class="key-label-alpha">E</span>
+              <button class="key key-func" data-input="tan(" data-shift="tan⁻¹(" data-alpha="E">tan</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">RECALL</span>
+              <span class="key-label-alpha">F</span>
+              <button class="key key-func" data-action="sto" data-alpha="F">STO</button>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="key-wrapper">
+              <span class="key-label-shift">←</span>
+              <span class="key-label-alpha">i</span>
+              <button class="key key-func" data-input="ENG" data-alpha="i">ENG</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">%</span>
+              <button class="key key-func" data-input="(" data-shift="%">(</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">,</span>
+              <span class="key-label-alpha">X</span>
+              <button class="key key-func" data-input=")" data-alpha="X">)</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">a b/c</span>
+              <span class="key-label-alpha">Y</span>
+              <button class="key key-func" data-action="sd" data-alpha="Y">S⇔D</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">M-</span>
+              <span class="key-label-alpha">M</span>
+              <button class="key key-func" data-action="mplus" data-alpha="M">M+</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">x!</span>
+              <button class="key key-func" data-input="!" data-shift="!">x⁻¹</button>
+            </div>
+
+          </div>
+
+          <!-- Bottom Numeric and Core Operation Pad -->
+          <div class="numeric-pad-grid">
+
+            <!-- Row 4: 7, 8, 9, DEL, AC -->
+            <div class="key-wrapper">
+              <span class="key-label-shift">CONST</span>
+              <button class="key key-num" data-input="7">7</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">CONV</span>
+              <button class="key key-num" data-input="8">8</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">RESET</span>
+              <button class="key key-num" data-input="9">9</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">INS</span>
+              <button class="key key-del" data-action="del">DEL</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">OFF</span>
+              <button class="key key-ac" data-action="ac">AC</button>
+            </div>
+
+            <!-- Row 5: 4, 5, 6, ×, ÷ -->
+            <div class="key-wrapper">
+              <button class="key key-num" data-input="4">4</button>
+            </div>
+            <div class="key-wrapper">
+              <button class="key key-num" data-input="5">5</button>
+            </div>
+            <div class="key-wrapper">
+              <button class="key key-num" data-input="6">6</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">nPr</span>
+              <button class="key key-op" data-input="×">×</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">nCr</span>
+              <button class="key key-op" data-input="÷">÷</button>
+            </div>
+
+            <!-- Row 6: 1, 2, 3, +, − -->
+            <div class="key-wrapper">
+              <button class="key key-num" data-input="1">1</button>
+            </div>
+            <div class="key-wrapper">
+              <button class="key key-num" data-input="2">2</button>
+            </div>
+            <div class="key-wrapper">
+              <button class="key key-num" data-input="3">3</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">Pol</span>
+              <button class="key key-op" data-input="+">+</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">Rec</span>
+              <button class="key key-op" data-input="−">−</button>
+            </div>
+
+            <!-- Row 7: 0, ., ×10^x, Ans, = -->
+            <div class="key-wrapper">
+              <span class="key-label-shift">Rnd</span>
+              <button class="key key-num" data-input="0">0</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">Ran#</span>
+              <button class="key key-num" data-input=".">.</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">π</span>
+              <span class="key-label-alpha">e</span>
+              <button class="key key-op" data-input="×10^" data-shift="π" data-alpha="e">×10<sup>x</sup></button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">%</span>
+              <button class="key key-op" data-input="Ans" data-shift="%">Ans</button>
+            </div>
+            <div class="key-wrapper">
+              <button class="key key-equal" data-action="equal">=</button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Help Modal Dialog -->
+    <div class="modal-backdrop hidden" id="help-modal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>📖 Hướng Dẫn Sử Dụng Casio fx-580VN X</h3>
+          <button class="modal-close" id="btn-close-help">×</button>
+        </div>
+        <div class="modal-body">
+          <section>
+            <h4>⌨️ Phím Tắt Bàn Phím Máy Tính</h4>
+            <table class="help-table">
+              <tr><th>Phím bàn phím</th><th>Chức năng máy tính</th></tr>
+              <tr><td><code>0 - 9</code> và <code>.</code></td><td>Nhập số và dấu thập phân</td></tr>
+              <tr><td><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code></td><td>Phép tính cộng, trừ, nhân, chia</td></tr>
+              <tr><td><code>Enter</code> hoặc <code>=</code></td><td>Thực hiện tính toán (Dấu <code>=</code>)</td></tr>
+              <tr><td><code>Backspace</code></td><td>Xóa 1 ký tự (Phím <code>DEL</code>)</td></tr>
+              <tr><td><code>Escape</code> (Esc)</td><td>Xóa toàn bộ biểu thức (Phím <code>AC</code>)</td></tr>
+              <tr><td><code>(</code> và <code>)</code></td><td>Mở ngoặc và đóng ngoặc đơn</td></tr>
+              <tr><td><code>s</code>, <code>c</code>, <code>t</code></td><td>Nhập hàm <code>sin(</code>, <code>cos(</code>, <code>tan(</code></td></tr>
+              <tr><td><code>x</code></td><td>Nhập biến <code>X</code></td></tr>
+            </table>
+          </section>
+
+          <section>
+            <h4>✨ Các Tính Năng Đặc Biệt</h4>
+            <ul>
+              <li><strong>Nút S⇔D:</strong> Chuyển đổi nhanh giữa phân số tối giản (VD: 3/4) và số thập phân (0.75).</li>
+              <li><strong>Phím MENU:</strong>
+                <ul>
+                  <li>Bấm <code>MENU</code> rồi bấm <code>1</code>: Tính toán bình thường.</li>
+                  <li>Bấm <code>MENU</code> rồi bấm <code>9</code>: Giải Phương trình bậc 2 ($ax^2+bx+c=0$), bậc 3 ($ax^3+bx^2+cx+d=0$) và Hệ 2 phương trình bậc nhất 2 ẩn! Tìm nghiệm thực, nghiệm phức và tọa độ đỉnh Parabol.</li>
+                  <li>Bấm <code>MENU</code> rồi bấm <code>8</code>: Lập bảng giá trị $f(x)$ với Start, End, Step.</li>
+                </ul>
+              </li>
+              <li><strong>Phím CALC:</strong> Nhập biểu thức chứa $X$ (ví dụ: <code>2X^2 - 3X + 1</code>), nhấn <code>CALC</code>, máy sẽ hỏi $X=?$ để tính giá trị tức thì!</li>
+              <li><strong>Phím SHIFT và ALPHA:</strong> Kích hoạt các ký hiệu màu vàng kim hoặc màu đỏ hồng phía trên nút.</li>
+            </ul>
+          </section>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-primary" id="btn-modal-ok">Đã hiểu</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="calculator-engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+
