@@ -2,6 +2,8 @@
 
 Mô phỏng máy tính bỏ túi học sinh quốc dân **Casio fx-580VN X ClassWiz** phiên bản tiếng Việt chạy trên trình duyệt web với giao diện chân thực, âm thanh phím bấm sống động và đầy đủ các tính năng mạnh mẽ.
 
+🌐 **Trải nghiệm trực tiếp trên Web (GitHub Pages):** [https://haison08.github.io/casiofx580/](https://haison08.github.io/casiofx580/)
+
 ---
 
 ## 🚀 Cách Chạy Ứng Dụng
