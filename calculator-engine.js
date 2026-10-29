@@ -146,6 +146,9 @@ class MathEngine {
     s = s.replace(/(\d+)\s*%/g, '($1*0.01)');
     s = s.replace(/×10\^([-\d]+|\([-\d]+\))/g, '*(10^$1)');
 
+    // Fix negative exponents (e.g. 5^-1 -> 5^(-1), 2^-3 -> 2^(-3))
+    s = s.replace(/\^-\s*(\d+(?:\.\d+)?)/g, '^(-$1)');
+
     // Auto-close missing trailing parentheses (Casio Natural V.P.A.M. behavior)
     const openCount = (s.match(/\(/g) || []).length;
     const closeCount = (s.match(/\)/g) || []).length;

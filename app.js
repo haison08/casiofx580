@@ -178,8 +178,14 @@ document.addEventListener('DOMContentLoaded', () => {
           elResultText.style.display = 'block';
         } else if (state.showingFraction && state.currentResult.fraction) {
           const parts = state.currentResult.fraction.split('/');
-          elFracNum.textContent = parts[0];
-          elFracDen.textContent = parts[1];
+          const rawNum = parseInt(parts[0], 10);
+          const den = parts[1];
+          const elSign = document.getElementById('frac-sign');
+          if (elSign) {
+            elSign.textContent = rawNum < 0 ? '−' : '';
+          }
+          elFracNum.textContent = String(Math.abs(rawNum));
+          elFracDen.textContent = den;
           elFractionBox.classList.remove('hidden');
           elResultText.style.display = 'none';
         } else {

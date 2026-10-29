@@ -85,9 +85,12 @@
               <!-- Result line -->
               <div class="result-line" id="result-display">
                 <div class="fraction-box hidden" id="result-fraction">
-                  <div class="frac-num" id="frac-num"></div>
-                  <div class="frac-line"></div>
-                  <div class="frac-den" id="frac-den"></div>
+                  <span class="frac-sign" id="frac-sign"></span>
+                  <div class="frac-stacked">
+                    <div class="frac-num" id="frac-num"></div>
+                    <div class="frac-line"></div>
+                    <div class="frac-den" id="frac-den"></div>
+                  </div>
                 </div>
                 <div class="decimal-box" id="result-text">0</div>
               </div>
@@ -181,9 +184,8 @@
                 <span class="key-label-shift">SETUP</span>
                 <button class="key key-menu" data-action="menu">MENU</button>
               </div>
-              <!-- ON / OFF -->
+              <!-- ON -->
               <div class="key-wrapper">
-                <span class="key-label-shift">OFF</span>
                 <button class="key key-on" data-action="on">ON</button>
               </div>
             </div>
@@ -212,7 +214,7 @@
 
             <!-- Row 1 -->
             <div class="key-wrapper">
-              <span class="key-label-shift"></span>
+              <span class="key-label-shift">d/c</span>
               <button class="key key-func" data-input="/" title="Phân số">■/□</button>
             </div>
             <div class="key-wrapper">
@@ -225,14 +227,14 @@
             </div>
             <div class="key-wrapper">
               <span class="key-label-shift">ⁿ√</span>
-              <button class="key key-func" data-input="^">x<sup>■</sup></button>
+              <button class="key key-func" data-input="^">x<span class="box-sup">□</span></button>
             </div>
             <div class="key-wrapper">
-              <span class="key-label-shift">log</span>
+              <span class="key-label-shift">Σ</span>
               <button class="key key-func" data-input="log(">log</button>
             </div>
             <div class="key-wrapper">
-              <span class="key-label-shift">e<sup>x</sup></span>
+              <span class="key-label-shift">e<span class="box-sup">x</span></span>
               <button class="key key-func" data-input="ln(">ln</button>
             </div>
 
@@ -243,32 +245,37 @@
               <button class="key key-func" data-input="(-)" data-alpha="A">(-)</button>
             </div>
             <div class="key-wrapper">
-              <span class="key-label-shift">° ' "</span>
+              <span class="key-label-shift">←</span>
               <span class="key-label-alpha">B</span>
               <button class="key key-func" data-input="°" data-alpha="B">° ' "</button>
             </div>
             <div class="key-wrapper">
-              <span class="key-label-shift">sin⁻¹</span>
+              <span class="key-label-shift">x!</span>
               <span class="key-label-alpha">C</span>
-              <button class="key key-func" data-input="sin(" data-shift="sin⁻¹(" data-alpha="C">sin</button>
+              <button class="key key-func" data-input="^-1" data-shift="!" data-alpha="C">x⁻¹</button>
+            </div>
+            <div class="key-wrapper">
+              <span class="key-label-shift">sin⁻¹</span>
+              <span class="key-label-alpha">D</span>
+              <button class="key key-func" data-input="sin(" data-shift="sin⁻¹(" data-alpha="D">sin</button>
             </div>
             <div class="key-wrapper">
               <span class="key-label-shift">cos⁻¹</span>
-              <span class="key-label-alpha">D</span>
-              <button class="key key-func" data-input="cos(" data-shift="cos⁻¹(" data-alpha="D">cos</button>
+              <span class="key-label-alpha">E</span>
+              <button class="key key-func" data-input="cos(" data-shift="cos⁻¹(" data-alpha="E">cos</button>
             </div>
             <div class="key-wrapper">
               <span class="key-label-shift">tan⁻¹</span>
-              <span class="key-label-alpha">E</span>
-              <button class="key key-func" data-input="tan(" data-shift="tan⁻¹(" data-alpha="E">tan</button>
-            </div>
-            <div class="key-wrapper">
-              <span class="key-label-shift">RECALL</span>
               <span class="key-label-alpha">F</span>
-              <button class="key key-func" data-action="sto" data-alpha="F">STO</button>
+              <button class="key key-func" data-input="tan(" data-shift="tan⁻¹(" data-alpha="F">tan</button>
             </div>
 
             <!-- Row 3 -->
+            <div class="key-wrapper">
+              <span class="key-label-shift">RECALL</span>
+              <span class="key-label-alpha">z</span>
+              <button class="key key-func" data-action="sto">STO</button>
+            </div>
             <div class="key-wrapper">
               <span class="key-label-shift">←</span>
               <span class="key-label-alpha">i</span>
@@ -292,10 +299,6 @@
               <span class="key-label-shift">M-</span>
               <span class="key-label-alpha">M</span>
               <button class="key key-func" data-action="mplus" data-alpha="M">M+</button>
-            </div>
-            <div class="key-wrapper">
-              <span class="key-label-shift">x!</span>
-              <button class="key key-func" data-input="!" data-shift="!">x⁻¹</button>
             </div>
 
           </div>
@@ -375,7 +378,7 @@
             <div class="key-wrapper">
               <span class="key-label-shift">π</span>
               <span class="key-label-alpha">e</span>
-              <button class="key key-op" data-input="×10^" data-shift="π" data-alpha="e">×10<sup>x</sup></button>
+              <button class="key key-op" data-input="×10^" data-shift="π" data-alpha="e">×10<span class="box-sup">x</span></button>
             </div>
             <div class="key-wrapper">
               <span class="key-label-shift">%</span>
